@@ -1,0 +1,15 @@
+package br.pro.hashi.ensino.desagil.tequilada;
+
+public class Main {
+	public static void main (String[] args) {
+		System.out.println("Projeto 1");
+		
+		BufferedReader leitura = new BufferedReader(new FileReader("tabuleiro.txt"));
+		
+//		while ( (valor = leitura.readLine()) != null) {
+//			System.out.println("Projeto 1");
+//		}
+		
+		leitura.close();
+	}
+}

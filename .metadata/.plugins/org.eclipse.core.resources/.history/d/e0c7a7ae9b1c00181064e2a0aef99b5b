@@ -1,0 +1,30 @@
+package br.pro.hashi.ensino.desagil.tequilada;
+
+import java.io.*;
+
+public class Main {
+	public static void main (String[] args) throws IOException {
+		System.out.println("Projeto 1");
+		
+		InputStream is = new FileInputStream("tabuleiro.txt");
+		InputStreamReader arquivo = new InputStreamReader(is);
+		BufferedReader leitura = new BufferedReader(arquivo);
+		
+		System.out.println(leitura.readLine());
+		
+		String textoFinal;
+		String conteudo;
+		while (conteudo = leitura.readLine() != null) {
+			if (conteudo == "#"){
+				textoFinal = "X";
+			}
+			else {
+				textoFinal = " ";
+			}
+			System.out.println(conteudo);
+		}
+		
+		System.out.println(textoFinal);
+		leitura.close();
+	}
+}
