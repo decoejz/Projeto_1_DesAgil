@@ -1,33 +1,52 @@
 package br.pro.hashi.ensino.desagil.tequilada;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Board {
-	int x;
-	int y;
-	boolean[] isWall = new boolean[9];
-	
-	String texto;
-	
-	void loadFromFile(texto){
-		int i = 0;
-		int j = 0;
-		
-		for (char c : texto){
-			if (c == "X"){
-				isWall[i][j]= true;
-				i +=1;
-				
+	boolean[][] isWall;
+
+	void loadFromFile(String path) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(path));
+
+			String line = reader.readLine();
+
+			String[] words = line.split(" ");
+
+			int numRows = Integer.parseInt(words[0]);
+			int numCols = Integer.parseInt(words[1]);
+
+			isWall = new boolean[numRows][numCols];
+
+			for(int i = 0; i < numRows; i++) {
+				line = reader.readLine();
+
+				for(int j = 0; j < numCols; j++) {
+					boolean value;
+
+					if(line.charAt(j) == '#') {
+						value = true;
+					}
+					else {
+						value = false;
+					}
+
+					isWall[i][j] = value;
+				}
 			}
-			else if(c == " "){
-				isWall[i][j]= false;
-				i +=1;
-				
-			}
-			else{
-				i -=19;
-				j += 1;
-				
-			}
-			
+
+			reader.close();
+		}
+
+		catch(FileNotFoundException exception) {
+			System.out.println(exception);
+		}
+
+		catch(IOException exception) {
+			System.out.println(exception);
 		}
 	}
 }
